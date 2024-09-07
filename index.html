@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload and Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-600 flex items-center justify-center min-h-screen">
+    <div class="bg-slate-700 px-36 py-40  rounded-lg shadow-lg text-center">
+        <h1 class="text-3xl font-bold mb-6 text-slate-900">Upload Your Video</h1>
+        <form id="videoForm" class="flex flex-col items-center">
+            <input type="file" id="videoInput" accept="video/*" required class="mb-4 p-2 border rounded">
+            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-slate-700">Submit</button>
+        </form>
+        <div id="result" class="mt-6 hidden">
+            <img id="resultIcon" src="" alt="Result Icon" class="mx-auto mb-4 w-12 h-12">
+            <p id="resultText" class="text-lg font-semibold"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('videoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Dummy logic to determine if the video is real or AI-generated
+            let isReal = Math.random() > 0.5;
+
+            let resultIcon = document.getElementById('resultIcon');
+            let resultText = document.getElementById('resultText');
+            let resultDiv = document.getElementById('result');
+
+            if (isReal) {
+                resultIcon.src = "https://img.icons8.com/fluency/48/thumb-up.png";
+                resultText.textContent = "Yours is real!";
+            } else {
+                resultIcon.src = "https://img.icons8.com/color/48/000000/thumbs-down.png";
+                resultText.textContent = "Yours is AI-generated!";
+            }
+
+            resultDiv.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
